@@ -1,0 +1,27 @@
+services:
+  hardhat:
+    stdin_open: true
+    tty: true
+    init: true
+    build:
+      context: ./hardhat
+      dockerfile: Dockerfile.hardhat
+    image: macmind-hardhat:latest
+    volumes:
+      - ./hardhat:/app
+    command: bash -c "npm install && npx hardhat node"
+    ports:
+      - "8545:8545"
+  dapp:
+    stdin_open: true
+    tty: true
+    init: true
+    build:
+        context: ./dapp
+        dockerfile: Dockerfile.dapp
+    image: macmind-dapp:latest
+    volumes:
+      - ./dapp:/app
+    command: bash -c "npm install && npm run dev"
+    ports:
+      - "5173:5173"

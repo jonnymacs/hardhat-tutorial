@@ -1,0 +1,5 @@
+FROM node:23
+
+# Create app directory
+WORKDIR /app
+
